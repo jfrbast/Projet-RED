@@ -9,12 +9,12 @@ type Item struct {
 func ShowInventory() {
 
 	inventory := []Item{
-		{Name: "casque"},
-		{Name: "placetron"},
-		{Name: "Jambieres"},
-		{Name: "bottes"},
-		{Name: "potion de soin"},
-		{Name: "potion de poison"},
+		{Name: ""},
+		{Name: ""},
+		{Name: ""},
+		{Name: ""},
+		{Name: ""},
+		{Name: ""},
 		{Name: ""},
 		{Name: ""},
 		{Name: ""},
