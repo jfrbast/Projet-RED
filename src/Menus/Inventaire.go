@@ -1,57 +1,40 @@
 package projetred
 
-import (
-	"fmt"
-)
+import "fmt"
 
-func main() {
-	inventory := NewInventory()
+type Item struct {
+	Name string
+}
 
-	for {
+var inventory = make([]Item, 10)
 
-		fmt.Println("\nMenu principal :")
-		fmt.Println("1. Ajouter un objet à l'inventaire")
-		fmt.Println("2. Retirer un objet de l'inventaire")
-		fmt.Println("3. Afficher le contenu de l'inventaire")
-		fmt.Println("4. Quitter")
+// AddItem adds an item to the inventory
+func AddItem(index int, name string) {
+	if index >= 0 && index < len(inventory) {
+		inventory[index] = Item{Name: name}
+		fmt.Printf("Added %s to slot %d\n", name, index)
+	} else {
+		fmt.Println("Index out of range!")
+	}
+}
 
-		var choice int
-		fmt.Print("Choisissez une option : ")
-		_, err := fmt.Scan(&choice)
-		if err != nil {
-			fmt.Println("Entrée invalide. Veuillez entrer un nombre.")
-			continue
-		}
+func RemoveItem(index int) {
+	if index >= 0 && index < len(inventory) {
+		fmt.Printf("Removed %s from slot %d\n", inventory[index].Name, index)
+		inventory[index] = Item{} // Clear the slot
+	} else {
+		fmt.Println("Index out of range!")
+	}
+}
 
-		switch choice {
-		case 1:
-			// Ajouter un objet
-			var name, description string
-			fmt.Print("Entrez le nom de l'objet : ")
-			fmt.Scan(&name)
-			fmt.Print("Entrez la description de l'objet : ")
-			fmt.Scan(&description)
-			item := NewItem(name, description)
-			inventory.AddItem(item)
-
-		case 2:
-			var name string
-			fmt.Print("Entrez le nom de l'objet à retirer : ")
-			fmt.Scan(&name)
-			inventory.RemoveItem(name)
-
-		case 3:
-
-			inventory.Display()
-
-		case 4:
-
-			fmt.Println("Quitter le programme.")
-			return
-
-		default:
-
-			fmt.Println("Choix non valide. Essayez encore.")
+func ShowInventory() {
+	for i, item := range inventory {
+		if item.Name != "" {
+			fmt.Printf("Item %d: %s\n", i, item.Name)
+		} else {
+			fmt.Printf("Item %d: Vide\n", i)
 		}
 	}
 }
+
+//1. Tableau dont la taile ne varie pas 10 max  + Si inventaire est vide print vide sinon print tout l inventaire
