@@ -24,7 +24,8 @@ func Menu() {
 		case '3':
 			fmt.Println("J'espère à bientôt !")
 			os.Exit(1)
-
+		default:
+			fmt.Println("T'as pas compris la consigne, fais un effort stp.")
 		}
 	}
 }
