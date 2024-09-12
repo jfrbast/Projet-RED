@@ -1,14 +1,15 @@
-package Menus
+package projetred
 
 import (
 	"fmt"
+	"github.com/fatih/color"
 	"os"
 )
 
 func Menu() {
 	var ans int
 	for {
-		fmt.Println("Choisissez ce que vous voulez faire.")
+		color.Blue("Choisissez ce que vous voulez faire.")
 		fmt.Println("1.Regarder votre Inventaire.")
 		fmt.Println("2.Regarder vos Stats.")
 		fmt.Println("3.Quitter.")

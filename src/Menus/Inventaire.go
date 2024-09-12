@@ -1,4 +1,4 @@
-package Menus
+package projetred
 
 import "fmt"
 

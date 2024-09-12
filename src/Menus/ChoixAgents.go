@@ -1,10 +1,10 @@
-package Menus
+package projetred
 
 import (
 	"fmt"
 )
 
-func ChoixAgent() {
+func ChoixAgent(ans any) {
 	fmt.Println("Choisissez qui vous voulez être.")
 	fmt.Println("1.Brimstone.")
 	fmt.Println("2.Skye.")
@@ -27,7 +27,7 @@ func ChoixAgent() {
 		fmt.Println("Vous avez choisis Phoenix.")
 	default:
 		fmt.Println("T'as pas compris la consigne, fais un effort stp.")
-		ChoixAgent()
+		ChoixAgent(nil)
 	}
 
 }
