@@ -13,8 +13,8 @@ func ShowInventory() {
 		{Name: "placetron"},
 		{Name: "Jambieres"},
 		{Name: "bottes"},
-		{Name: "potions de soins"},
-		{Name: "potions de poisons"},
+		{Name: "potion de soin"},
+		{Name: "potion de poison"},
 		{Name: ""},
 		{Name: ""},
 		{Name: ""},
@@ -30,4 +30,4 @@ func ShowInventory() {
 	}
 }
 
-//1. Tableau dont la taille ne varie pas 10 max  + Si inventaire est vide print vide sinon print tout l inventaire
+//1. Tableau dont la taile ne varie pas 10 max  + Si inventaire est vide print vide sinon print tout l inventaire
