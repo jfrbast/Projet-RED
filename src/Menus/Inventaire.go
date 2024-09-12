@@ -6,21 +6,31 @@ type Item struct {
 	Name string
 }
 
-func ShowInventory() {
+// Global inventory variable
+var inventory = make([]Item, 10)
 
-	inventory := []Item{
-		{Name: ""},
-		{Name: ""},
-		{Name: ""},
-		{Name: ""},
-		{Name: ""},
-		{Name: ""},
-		{Name: ""},
-		{Name: ""},
-		{Name: ""},
-		{Name: ""},
+// AddItem adds an item to the inventory
+func AddItem(index int, name string) {
+	if index >= 0 && index < len(inventory) {
+		inventory[index] = Item{Name: name}
+		fmt.Printf("Added %s to slot %d\n", name, index)
+	} else {
+		fmt.Println("Index out of range!")
 	}
+}
 
+// RemoveItem removes an item from the inventory
+func RemoveItem(index int) {
+	if index >= 0 && index < len(inventory) {
+		fmt.Printf("Removed %s from slot %d\n", inventory[index].Name, index)
+		inventory[index] = Item{} // Clear the slot
+	} else {
+		fmt.Println("Index out of range!")
+	}
+}
+
+// ShowInventory displays the inventory
+func ShowInventory() {
 	for i, item := range inventory {
 		if item.Name != "" {
 			fmt.Printf("Item %d: %s\n", i, item.Name)
