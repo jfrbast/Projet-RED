@@ -6,7 +6,6 @@ type Item struct {
 	Name string
 }
 
-// Global inventory variable
 var inventory = make([]Item, 10)
 
 // AddItem adds an item to the inventory
@@ -19,7 +18,6 @@ func AddItem(index int, name string) {
 	}
 }
 
-// RemoveItem removes an item from the inventory
 func RemoveItem(index int) {
 	if index >= 0 && index < len(inventory) {
 		fmt.Printf("Removed %s from slot %d\n", inventory[index].Name, index)
@@ -29,7 +27,6 @@ func RemoveItem(index int) {
 	}
 }
 
-// ShowInventory displays the inventory
 func ShowInventory() {
 	for i, item := range inventory {
 		if item.Name != "" {
