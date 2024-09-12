@@ -5,6 +5,6 @@ import (
 )
 
 func main() {
-	projetred.ShowInventory()
+	projetred.Menu()
 
 }
