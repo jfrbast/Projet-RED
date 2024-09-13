@@ -23,9 +23,13 @@ func VisitForge() {
 			player.Armor = "Armure améliorée"
 			player.Credits -= 200
 			fmt.Println("Vous avez amélioré votre armure.")
+
 		} else {
 			fmt.Println("Vous n'avez pas assez de crédits.")
+
 		}
+		VisitForge()
+
 	}
 	fmt.Println("———————————————————————————————————————————————")
 }
