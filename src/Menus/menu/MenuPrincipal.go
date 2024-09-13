@@ -16,11 +16,11 @@ func Menu() {
 	for {
 		color.White("Choisissez ce que vous voulez faire.")
 		color.White("———————————————————————————————————————————————")
-		color.Cyan("1. Regarder votre Inventaire.")
+		color.Cyan("1. Regarder votre .")
 		color.Green("2. Regarder vos Stats.")
-		color.Yellow("3. Aller voir le Marchant.")
+		color.Yellow("3. Aller voir le marchand à metro.")
 		fmt.Println("4. Aller voir le Forgeron.")
-		color.White("5. Aller au Combat !")
+		color.White("5. Aller au Front !")
 		color.Red("6. Quitter.")
 		color.White("———————————————————————————————————————————————")
 
