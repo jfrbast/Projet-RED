@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/fatih/color"
 	"os"
+	src "projetred"
 	"projetred/Menus/Forge"
 	"projetred/Menus/Shop"
 	"projetred/Menus/inventory"
@@ -14,9 +15,10 @@ import (
 func Menu() {
 	var ans int
 	for {
+		src.ClearScreen()
 		color.White("Choisissez ce que vous voulez faire.")
 		color.White("———————————————————————————————————————————————")
-		color.Cyan("1. Regarder votre .")
+		color.Cyan("1. Regarder votre sac.")
 		color.Green("2. Regarder vos Stats.")
 		color.Yellow("3. Aller voir le marchand à metro.")
 		fmt.Println("4. Aller voir le Forgeron.")

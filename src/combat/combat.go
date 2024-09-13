@@ -67,11 +67,13 @@ func StartCombat() {
 
 		// Si le joueur ou l'ennemi meurt
 		if p.Health <= 0 {
-			fmt.Println("Vous avez perdu le combat.")
+			fmt.Println("Vous êtes mort !")
+			fmt.Println("Algtego vous ressucite avec 50% de vos hp.")
+			p.Health += p.MAX_Health / 2
 			break
 		} else if enemy.Health <= 0 {
 			fmt.Println("Vous avez vaincu le gobelin!")
-			p.Credits += 100
+			p.Credits += 300
 			break
 		}
 	}

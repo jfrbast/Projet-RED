@@ -2,11 +2,17 @@ package Shop
 
 import (
 	"fmt"
+	"github.com/fatih/color"
+	src "projetred"
 	"projetred/player"
 )
 
 func VisitShop() {
+	src.ClearScreen()
 	player := player.GetPlayer()
+	fmt.Printf("\n")
+	color.Yellow("Vous possédez %d Crédits  ", player.Credits)
+	fmt.Printf("\n")
 	fmt.Println("Vous êtes chez le Marchant.")
 	fmt.Println("1. Acheter une potion (50 crédits)")
 	fmt.Println("2. Acheter un sort (100 crédits)")
