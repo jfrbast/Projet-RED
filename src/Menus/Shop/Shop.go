@@ -27,6 +27,7 @@ func VisitShop() {
 		} else {
 			fmt.Println("Vous n'avez pas assez de crédits.")
 		}
+		VisitShop()
 	case 2:
 		if player.Credits >= 100 {
 			player.Mana += 25
@@ -35,6 +36,7 @@ func VisitShop() {
 		} else {
 			fmt.Println("Vous n'avez pas assez de crédits.")
 		}
+		VisitShop()
 	}
 	fmt.Println("———————————————————————————————————————————————")
 }
