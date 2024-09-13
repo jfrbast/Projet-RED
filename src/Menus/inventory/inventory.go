@@ -4,6 +4,7 @@ import (
 	"fmt"
 	src "projetred"
 	"projetred/player"
+	"time"
 )
 
 func ShowInventory() {
@@ -13,4 +14,5 @@ func ShowInventory() {
 	fmt.Printf("Potions: %d\n", player.Potions)
 	fmt.Printf("Armure: %s\n", player.Armor)
 	fmt.Println("———————————————————————————————————————————————")
+	time.Sleep(3 * time.Second)
 }

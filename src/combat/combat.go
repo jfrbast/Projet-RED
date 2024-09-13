@@ -3,10 +3,12 @@ package combat
 import (
 	"fmt"
 	"projetred/player"
+	"time"
 )
 
 func StartCombat() {
 	fmt.Println("Vous voulez vous battre, battez-vous !")
+	time.Sleep(1 * time.Second)
 	p := player.GetPlayer() // `p` pour le joueur
 
 	// Définition d'un ennemi de base (gobelin)
@@ -36,6 +38,7 @@ func StartCombat() {
 		case 1:
 			fmt.Printf("Vous attaquez %s et lui infligez %d dégâts.\n", enemy.Name, p.Attack)
 			enemy.Health -= p.Attack
+
 		case 2:
 			if p.Mana >= 25 {
 				fmt.Printf("Vous utilisez un sort et infligez %d dégâts à %s.\n", p.Attack+10, enemy.Name)

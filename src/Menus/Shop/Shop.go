@@ -16,7 +16,11 @@ func VisitShop() {
 	fmt.Println("Vous êtes chez le Marchant.")
 	fmt.Println("1. Acheter une potion (50 crédits)")
 	fmt.Println("2. Acheter un sort (100 crédits)")
-	fmt.Println("3. Retour")
+	fmt.Println("3.Sakado.Augmente l'espace de votre sac à dos.")
+	fmt.Printf("4.acheter ")
+	fmt.Println("5.Spell 1")
+	fmt.Println("6.Acheter Jeremy qui vous suivra et se battra pour vous !")
+	fmt.Println("7. Retour")
 
 	var choice int
 	_, err := fmt.Scan(&choice)
@@ -44,7 +48,25 @@ func VisitShop() {
 		}
 		VisitShop()
 	case 3:
-		if player.Credits >=  {}
+		if player.Credits >= 500 {
+			//AJOUTER 10 SLOTS D'INVENTAIRE
+		}
+	case 4:
+		if player.Credits >= 100 {
+			//AJOUTER spell 1 x1
+		}
+	case 5:
+		if player.Credits >= 150 {
+			//AJOUTER spell 2 x1
+		}
+
+	case 6:
+
+		if player.Credits >= 2000 {
+			fmt.Println("Jeremy vous accompagne, il vous sera de grande aide !")
+			//AJOUTER JEREM A INV
+		}
+
 	}
 	fmt.Println("———————————————————————————————————————————————")
 }

@@ -3,6 +3,7 @@ package stats
 import (
 	"fmt"
 	"projetred/player"
+	"time"
 )
 
 func ShowStats() {
@@ -15,4 +16,5 @@ func ShowStats() {
 	fmt.Printf("Attaque: %d\n", player.Attack)
 	fmt.Printf("Crédits: %d\n", player.Credits)
 	fmt.Println("———————————————————————————————————————————————")
+	time.Sleep(5 * time.Second)
 }
