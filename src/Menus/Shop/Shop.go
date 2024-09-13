@@ -43,6 +43,8 @@ func VisitShop() {
 			fmt.Println("Vous n'avez pas assez de crédits.")
 		}
 		VisitShop()
+	case 3:
+		if player.Credits >=  {}
 	}
 	fmt.Println("———————————————————————————————————————————————")
 }
