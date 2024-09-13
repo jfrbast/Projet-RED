@@ -1,5 +1,0 @@
-package projetred
-
-func OpenShop{
-
-}
