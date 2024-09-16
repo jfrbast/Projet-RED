@@ -43,7 +43,7 @@ func Menu() {
 		case 5:
 			combat.StartCombat()
 		case 6:
-			fmt.Println("J'espère à bientôt !")
+			fmt.Println("à la revoyure !")
 			color.White("———————————————————————————————————————————————")
 			os.Exit(1)
 		default:

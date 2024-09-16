@@ -11,7 +11,7 @@ func VisitShop() {
 	src.ClearScreen()
 	player := player.GetPlayer()
 	fmt.Printf("\n")
-	color.Yellow("Vous possédez %d Crédits  ", player.Credits)
+	color.Yellow("Vous avez %d Crédits  ", player.Credits)
 	fmt.Printf("\n")
 	fmt.Println("Vous êtes chez le Marchant.")
 	color.Red("1. Acheter une potion Gratuite !")
@@ -44,16 +44,16 @@ func VisitShop() {
 			player.Credits -= 50
 			fmt.Println("Vous avez acheté une potion.")
 		} else {
-			fmt.Println("Vous n'avez pas assez de crédits.")
+			fmt.Println("Ta pas assez d'argent?.")
 		}
 		VisitShop()
 	case 3:
 		if player.Credits >= 100 {
 			player.Mana += 25
 			player.Credits -= 100
-			fmt.Println("Vous avez acheté un sort, votre mana a augmenté.")
+			fmt.Println("Vous avez acheté un sort, votre radianite a augmenté.")
 		} else {
-			fmt.Println("Vous n'avez pas assez de crédits.")
+			fmt.Println("Toujous pas d'argent ?.")
 		}
 		VisitShop()
 	case 4:
@@ -72,7 +72,7 @@ func VisitShop() {
 	case 7:
 
 		if player.Credits >= 5000 {
-			fmt.Println("Jeremy vous accompagne, il vous sera de grande aide !")
+			fmt.Println("Jeremy vous accompagne, vous sera t'il utile?")
 			//AJOUTER JEREM A INV
 		}
 

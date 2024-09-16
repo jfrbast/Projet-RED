@@ -11,7 +11,7 @@ func ShowInventory() {
 	var choice int
 
 	for {
-		color.Cyan("Votre inventaire :")
+		color.Cyan("Votre sac a dos :")
 		color.White("———————————————————————————————————————————————")
 
 		for i, item := range p.Inventory {
@@ -19,7 +19,7 @@ func ShowInventory() {
 		}
 
 		color.White("———————————————————————————————————————————————")
-		fmt.Println("0. Retourner au menu principal")
+		fmt.Println("0. Retourner au lobby")
 		fmt.Print("Choisissez un objet pour l'utiliser, ou 0 pour quitter : ")
 
 		_, err := fmt.Scan(&choice)
@@ -48,9 +48,9 @@ func UseItemFromInventory(itemName string) {
 			}
 			color.Green("Vous avez utilisé une Potion de Soin. Santé actuelle : %d/%d", p.Health, p.MAX_Health)
 		} else {
-			color.Red("Vous n'avez plus de potions de soin.")
+			color.Red("Tu peux plus te soigner frerot.")
 		}
 	default:
-		color.Red("Cet objet ne peut pas être utilisé.")
+		color.Red("tu peux pas l'utiliser !.")
 	}
 }
