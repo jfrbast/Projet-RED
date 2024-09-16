@@ -12,19 +12,20 @@ type Spells struct {
 }
 
 type Player struct {
-	Name       string
-	Classe     string
-	Health     int
-	MAX_Health int
-	Mana       int
-	Attack     int
-	Credits    int
-	Agent      string
-	Inventory  []Item
-	Spells     []Spells
-	helmet     bool
-	boots      bool
-	plastron   bool
+	Name           string
+	Classe         string
+	Health         int
+	MAX_Health     int
+	Mana           int
+	Attack         int
+	Credits        int
+	Agent          string
+	Inventory      []Item
+	Spells         [2]Spells
+	helmet         bool
+	boots          bool
+	chestplate     bool
+	PotionGratuite bool
 }
 
 var player Player
@@ -36,8 +37,9 @@ func InitializePlayer(name string, agentChoice int) {
 	player.Inventory = []Item{{Name: "Spell 1", Quantity: 0}}
 	player.Inventory = []Item{{Name: "Spell 2", Quantity: 0}}
 	player.boots = false
-	player.plastron = false
+	player.chestplate = false
 	player.helmet = false
+	player.PotionGratuite = true
 
 	switch agentChoice {
 	case 1:
@@ -86,7 +88,7 @@ func UseItem(itemName string) bool {
 	return false
 }
 
-func AddItemToInventory(itemName string, quantity int) {
+func ItemToInventory(itemName string, quantity int) {
 	for i, item := range player.Inventory {
 		if item.Name == itemName {
 			player.Inventory[i].Quantity += quantity

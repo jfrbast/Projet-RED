@@ -9,10 +9,9 @@ import (
 func StartCombat() {
 	fmt.Println("Vous voulez vous battre, battez-vous !")
 	time.Sleep(1 * time.Second)
-	p := player.GetPlayer() // `p` pour le joueur
+	p := player.GetPlayer()
 
-	// Définition d'un ennemi de base (gobelin)
-	enemy := player.Player{ // On assume que `player.Player` est bien la structure de l'ennemi
+	enemy := player.Player{
 		Name:   "Gobelin",
 		Health: 50,
 		Attack: 10,
@@ -21,11 +20,17 @@ func StartCombat() {
 	// Boucle de combat
 	for enemy.Health > 0 && p.Health > 0 {
 		fmt.Printf("Ennemi: %s - Santé: %d\n", enemy.Name, enemy.Health)
+		time.Sleep(500 * time.Millisecond)
 		fmt.Printf("Votre Santé: %d, Mana: %d\n", p.Health, p.Mana)
+		time.Sleep(500 * time.Millisecond)
 		fmt.Println("Choisissez une action :")
+		time.Sleep(500 * time.Millisecond)
 		fmt.Println("1. Attaque basique")
+		time.Sleep(500 * time.Millisecond)
 		fmt.Println("2. Utiliser un sort (25 mana)")
+		time.Sleep(500 * time.Millisecond)
 		fmt.Println("3. Utiliser une potion")
+		time.Sleep(500 * time.Millisecond)
 
 		var action int
 		_, err := fmt.Scan(&action)
@@ -38,6 +43,7 @@ func StartCombat() {
 		case 1:
 			fmt.Printf("Vous attaquez %s et lui infligez %d dégâts.\n", enemy.Name, p.Attack)
 			enemy.Health -= p.Attack
+			time.Sleep(500 * time.Millisecond)
 
 		case 2:
 			if p.Mana >= 25 {
@@ -47,28 +53,15 @@ func StartCombat() {
 			} else {
 				fmt.Println("Pas assez de mana.")
 			}
-		//case 3:
-		//if p.Potions > 0 {
-		//	fmt.Println("Vous utilisez une potion et regagnez 30 points de santé.")
-		//p.Health += 30
-		//	if p.Health > 100 { // Assurez-vous que la santé ne dépasse pas un maximum (ex. 100)
-		//		p.Health = 100
-		//	}
-		//p.Potions--
-		//} else {
-		//	fmt.Println("Vous n'avez plus de potions.")
-		//}
 		default:
 			fmt.Println("Action non reconnue, essayez à nouveau.")
 		}
 
-		// Ennemi attaque après chaque action
 		if enemy.Health > 0 {
 			fmt.Printf("%s attaque et vous inflige %d dégâts.\n", enemy.Name, enemy.Attack)
 			p.Health -= enemy.Attack
 		}
 
-		// Si le joueur ou l'ennemi meurt
 		if p.Health <= 0 {
 			fmt.Println("Vous êtes mort !")
 			fmt.Println("Algtego vous ressucite avec 50% de vmios hp.")

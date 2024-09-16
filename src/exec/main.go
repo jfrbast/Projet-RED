@@ -10,7 +10,6 @@ import (
 func main() {
 	var agentName string
 	var agentChoice int
-
 	fmt.Println('\n',
 		`
 									( ___ )                                                ( ___ )
