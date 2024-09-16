@@ -47,17 +47,17 @@ func StartCombat() {
 			} else {
 				fmt.Println("Pas assez de mana.")
 			}
-		case 3:
-			if p.Potions > 0 {
-				fmt.Println("Vous utilisez une potion et regagnez 30 points de santé.")
-				p.Health += 30
-				if p.Health > 100 { // Assurez-vous que la santé ne dépasse pas un maximum (ex. 100)
-					p.Health = 100
-				}
-				p.Potions--
-			} else {
-				fmt.Println("Vous n'avez plus de potions.")
-			}
+		//case 3:
+		//if p.Potions > 0 {
+		//	fmt.Println("Vous utilisez une potion et regagnez 30 points de santé.")
+		//p.Health += 30
+		//	if p.Health > 100 { // Assurez-vous que la santé ne dépasse pas un maximum (ex. 100)
+		//		p.Health = 100
+		//	}
+		//p.Potions--
+		//} else {
+		//	fmt.Println("Vous n'avez plus de potions.")
+		//}
 		default:
 			fmt.Println("Action non reconnue, essayez à nouveau.")
 		}

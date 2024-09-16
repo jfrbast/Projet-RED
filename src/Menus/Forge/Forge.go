@@ -24,7 +24,7 @@ func VisitForge() {
 	switch choice {
 	case 1:
 		if player.Credits >= 200 {
-			player.Armor = "Armure améliorée"
+			//player.Armor = "Armure améliorée"
 			player.Credits -= 200
 			fmt.Println("\n")
 			color.Green("Vous avez amélioré votre armure.")
