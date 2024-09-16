@@ -74,10 +74,12 @@ func VisitShop() {
 		if players.Credits >= 100 {
 			player.ItemToInventory("Spell 1", 1)
 		}
+		VisitShop()
 	case 6:
 		if players.Credits >= 150 {
 			player.ItemToInventory("Spell 2", 1)
 		}
+		VisitShop()
 
 	case 7:
 
@@ -85,7 +87,8 @@ func VisitShop() {
 			fmt.Println("Jérémie vous accompagne, il vous sera de grande aide !")
 			player.ItemToInventory("Jérémie", 1)
 		}
-
+		VisitShop()
 	}
+
 	fmt.Println("———————————————————————————————————————————————")
 }

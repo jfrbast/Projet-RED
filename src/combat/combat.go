@@ -9,13 +9,32 @@ import (
 func StartCombat() {
 	fmt.Println("Vous voulez vous battre, battez-vous !")
 	time.Sleep(1 * time.Second)
-	p := player.GetPlayer() // `p` pour le joueur
-
-	// Définition d'un ennemi de base (larbin)
-	enemy := player.Player{ // On assume que `player.Player` est bien la structure de l'ennemi
-		Name:   "Larbin",
-		Health: 50,
-		Attack: 10,
+	p := player.GetPlayer()
+	var enemy player.Player
+	if p.Level < 3 {
+		enemy = player.Player{
+			Name:   "Kér et dîne",
+			Health: 50,
+			Attack: 10,
+		}
+	if p.Level >3 && p.Level < 6 {
+		enemy = player.Player{
+			Name:   "Antonain",
+			Health: 75,
+			Attack: 15,
+		}
+	if p.Level > 6 && p.Level < 10 {
+		enemy = player.Player{
+			Name:   "Phabieau",
+			Health: 50,
+			Attack: 10,
+		}
+	if p.Level > 10 {
+		enemy = player.Player{
+			Name:   "Lillian",
+			Health: 50,
+			Attack: 10,
+		}
 	}
 
 	// Boucle de combat
@@ -62,13 +81,11 @@ func StartCombat() {
 			fmt.Println("Action non reconnu, essaye encore.")
 		}
 
-		// Ennemi attaque après chaque action
 		if enemy.Health > 0 {
 			fmt.Printf("%s attaque et vous inflige %d dégâts.\n", enemy.Name, enemy.Attack)
 			p.Health -= enemy.Attack
 		}
 
-		// Si le joueur ou l'ennemi meurt
 		if p.Health <= 0 {
 			fmt.Println("Tu es mort !")
 			fmt.Println("Aziz vous ressucite avec 50% de point de vie.")

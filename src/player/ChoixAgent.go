@@ -26,6 +26,10 @@ type Player struct {
 	boots          bool
 	chestplate     bool
 	PotionGratuite bool
+	XP             int
+	Level          int
+	Xplvl          int
+	XptoNextlvl    int
 }
 
 var player Player
@@ -40,6 +44,14 @@ func InitializePlayer(name string, agentChoice int) {
 	player.chestplate = false
 	player.helmet = false
 	player.PotionGratuite = true
+	player.XP = 0
+	player.Level = 1
+	player.Xplvl = 10
+	if player.XP == player.Xplvl {
+		player.Xplvl += 5
+		player.Level += 1
+		player.XP = 0
+	}
 
 	switch agentChoice {
 	case 1:
