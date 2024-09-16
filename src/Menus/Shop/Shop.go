@@ -5,23 +5,28 @@ import (
 	"github.com/fatih/color"
 	src "projetred"
 	"projetred/player"
+	"time"
 )
 
 func VisitShop() {
 	src.ClearScreen()
-	player := player.GetPlayer()
+	players := player.GetPlayer()
 	fmt.Printf("\n")
-	color.Yellow("Vous avez %d Crédits  ", player.Credits)
+	color.Yellow("Vous possédez %d Crédits  ", players.Credits)
 	fmt.Printf("\n")
 	fmt.Println("Vous êtes chez le Marchant.")
-	color.Red("1. Acheter une potion Gratuite !")
-	fmt.Println("1. Acheter une potion (50 crédits)")
-	fmt.Println("2. Acheter un sort (100 crédits)")
-	fmt.Println("3.Sakado.Augmente l'espace de votre sac à dos.")
-	fmt.Printf("4.acheterspell 1 ")
-	fmt.Println("5.Spell 2")
-	fmt.Println("6.Acheter Jeremy qui vous suivra et se battra pour vous !")
-	fmt.Println("7. Retour")
+
+	fmt.Print("2. Acheter une potion (50 crédits) ")
+	if players.PotionGratuite == true {
+		color.Green(" || La première est gratuite !")
+	}
+	fmt.Println("3. Acheter un sort (100 crédits)")
+	fmt.Println("4.Potion de mana (100 crédits)")
+	fmt.Println("5.Sakado.Augmente l'espace de votre sac à dos.(500 crédits)")
+	fmt.Printf("6.acheter spell 1 (100 crédits)")
+	fmt.Println("7.acheter spell 2 (150 crédits)")
+	fmt.Println("8.Acheter Jeremy qui vous suivra et se battra pour vous !(5000 crédits !)")
+	fmt.Println("9. Retour")
 
 	var choice int
 	_, err := fmt.Scan(&choice)
@@ -31,49 +36,54 @@ func VisitShop() {
 
 	switch choice {
 	case 1:
-		PotionGratuite := 0
-		if PotionGratuite == 0 {
-			//player.Potions++
-			fmt.Println("Vous avez acheté une potion gratuite.")
-		} else {
-			fmt.Println("bien essayé.")
-		}
+
 	case 2:
-		if player.Credits >= 50 {
-			//player.Potions++
-			player.Credits -= 50
-			fmt.Println("Vous avez acheté une potion.")
+
+		if players.PotionGratuite == true {
+			players.PotionGratuite = false
+			player.ItemToInventory("Potion de Soin", 1)
+			fmt.Println("La Première est gratuite !.")
+			time.Sleep(3 * time.Second)
 		} else {
-			fmt.Println("Ta pas assez d'argent?.")
+			if players.Credits >= 50 {
+				player.ItemToInventory("Potion de Soin", 1)
+				players.Credits -= 50
+				fmt.Println("Vous avez acheté une potion.")
+				time.Sleep(3 * time.Second)
+			} else {
+				fmt.Println("Vous n'avez pas assez de crédits.")
+				time.Sleep(3 * time.Second)
+			}
+			VisitShop()
 		}
-		VisitShop()
+
 	case 3:
-		if player.Credits >= 100 {
-			player.Mana += 25
-			player.Credits -= 100
-			fmt.Println("Vous avez acheté un sort, votre radianite a augmenté.")
+		if players.Credits >= 100 {
+			players.Mana += 25
+			players.Credits -= 100
+			fmt.Println("Vous avez acheté une Potion de mana.")
 		} else {
-			fmt.Println("Toujous pas d'argent ?.")
+			fmt.Println("Vous n'avez pas assez de crédits.")
 		}
 		VisitShop()
 	case 4:
-		if player.Credits >= 500 {
-			//AJOUTER 10 SLOTS D'INVENTAIRE
+		if players.Credits >= 500 {
+			//++slot
 		}
 	case 5:
-		if player.Credits >= 100 {
-			//AJOUTER spell 1 x1
+		if players.Credits >= 100 {
+			player.ItemToInventory("Spell 1", 1)
 		}
 	case 6:
-		if player.Credits >= 150 {
-			//AJOUTER spell 2 x1
+		if players.Credits >= 150 {
+			player.ItemToInventory("Spell 2", 1)
 		}
 
 	case 7:
 
-		if player.Credits >= 5000 {
-			fmt.Println("Jeremy vous accompagne, vous sera t'il utile?")
-			//AJOUTER JEREM A INV
+		if players.Credits >= 5000 {
+			fmt.Println("Jérémie vous accompagne, il vous sera de grande aide !")
+			player.ItemToInventory("Jérémie", 1)
 		}
 
 	}
