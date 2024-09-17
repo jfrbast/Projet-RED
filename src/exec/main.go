@@ -28,7 +28,7 @@ func main() {
 									(_____)                                                (_____)`)
 	color.White("———————————————————————————————————————————————")
 	fmt.Println("Veuillez choisir votre agent:")
-	color.Yellow("1. BRIM")
+	color.Yellow("1. BRIM ")
 	color.Cyan("2. Sage")
 	color.Green("3. Skye")
 	color.Red("4. Phoenix")

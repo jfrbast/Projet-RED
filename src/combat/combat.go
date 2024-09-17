@@ -71,6 +71,7 @@ func StartCombat() {
 		// Si le joueur ou l'ennemi meurt
 		if p.Health <= 0 {
 			fmt.Println("Tu es mort !")
+			fmt.Println("tu as récupérer % radianites")
 			fmt.Println("Aziz vous ressucite avec 50% de point de vie.")
 			p.Health += p.MAX_Health / 2
 			break
@@ -78,7 +79,9 @@ func StartCombat() {
 			fmt.Println("Vous avez vaincu le sous-fifre!")
 			p.Credits += 300
 			break
+
 		}
+
 	}
 
 	fmt.Println("———————————————————————————————————————————————")

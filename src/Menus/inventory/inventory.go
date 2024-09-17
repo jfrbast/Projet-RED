@@ -52,5 +52,7 @@ func UseItemFromInventory(itemName string) {
 		}
 	default:
 		color.Red("tu peux pas l'utiliser !.")
+
 	}
+
 }

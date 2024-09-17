@@ -26,6 +26,7 @@ type Player struct {
 	boots          bool
 	chestplate     bool
 	PotionGratuite bool
+	Radianite      int
 }
 
 var player Player
@@ -33,6 +34,7 @@ var player Player
 func InitializePlayer(name string, agentChoice int) {
 	player.Name = name
 	player.Credits = 300
+	player.Radianite = 0
 	player.Inventory = []Item{{Name: "Potion de Soin", Quantity: 2}}
 	player.Inventory = []Item{{Name: "Spell 1", Quantity: 0}}
 	player.Inventory = []Item{{Name: "Spell 2", Quantity: 0}}
