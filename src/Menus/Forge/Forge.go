@@ -17,9 +17,15 @@ func VisitForge() {
 	fmt.Println("3. Retour")
 
 	var choice int
-	_, err := fmt.Scan(&choice)
-	if err != nil {
-		return
+	for {
+		_, err := fmt.Scan(&choice)
+		if err != nil || !(0 <= choice && choice <= 9) {
+			fmt.Println("Chef ?")
+			time.Sleep(1 * time.Second)
+			src.ClearScreen()
+			continue
+		}
+		break
 	}
 
 	switch choice {

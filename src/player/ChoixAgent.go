@@ -1,6 +1,8 @@
 package player
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Item struct {
 	Name     string
@@ -29,25 +31,27 @@ type Player struct {
 	XP             int
 	Level          int
 	Xplvl          int
-	XptoNextlvl    int
+	InventoryMax   int
 }
 
 var player Player
 
 func InitializePlayer(name string, agentChoice int) {
 	player.Name = name
-	player.Credits = 300
-	player.Inventory = []Item{{Name: "Potion de Soin", Quantity: 2}}
-	player.Inventory = []Item{{Name: "Spell 1", Quantity: 0}}
-	player.Inventory = []Item{{Name: "Spell 2", Quantity: 0}}
+	player.Credits = 3000000000
+	ItemToInventory("Potion de Soin", 2)
+	ItemToInventory("Spell 1", 1)
+	ItemToInventory("Spell 2", 1)
 	player.boots = false
 	player.chestplate = false
 	player.helmet = false
 	player.PotionGratuite = true
+	player.InventoryMax = 10
 	player.XP = 0
 	player.Level = 1
 	player.Xplvl = 10
 	if player.XP == player.Xplvl {
+
 		player.Xplvl += 5
 		player.Level += 1
 		player.XP = 0
@@ -108,4 +112,39 @@ func ItemToInventory(itemName string, quantity int) {
 		}
 	}
 	player.Inventory = append(player.Inventory, Item{Name: itemName, Quantity: quantity})
+}
+func (p *Player) CheckInventory() bool {
+	count := 0
+	for _, items := range p.Inventory {
+		count = count + items.Quantity
+		if count >= p.InventoryMax {
+			return true
+		}
+	}
+	fmt.Println(count, "/", p.InventoryMax)
+	return false
+}
+func IsAlpha(s string) bool {
+	for i := 0; i < len(s); i++ {
+		if !(s[i] >= 97 && s[i] <= 122 || s[i] >= 65 && s[i] <= 90) {
+			return false
+		}
+	}
+	return true
+}
+func ToLower(s string) string {
+	result := ""
+	for i, char := range s {
+		if i >= 1 {
+			if char >= 'A' && char <= 'Z' {
+				result += string(char + 32)
+			} else {
+				result += string(char)
+			}
+		} else {
+			result += string(char)
+		}
+
+	}
+	return result
 }
