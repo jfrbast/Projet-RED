@@ -9,7 +9,6 @@ import (
 )
 
 func StartCombat() {
-
 	fmt.Println("Vous voulez vous battre, battez-vous !")
 	time.Sleep(1 * time.Second)
 	p := player.GetPlayer()
@@ -84,20 +83,51 @@ func StartCombat() {
 		switch action {
 		case 1:
 			fmt.Printf("Vous attaquez %s et lui inflige %d dégâts.\n", enemy.Name, p.Attack)
-			time.Sleep(500 * time.Millisecond)
 			enemy.Health -= p.Attack
 
 		case 2:
 			if p.Mana >= 25 {
-				fmt.Printf("Vous utilisez un sort et infligez %d dégâts à %s.\n", p.Attack+10, enemy.Name)
-				time.Sleep(500 * time.Millisecond)
-				enemy.Health -= (p.Attack + 10)
-				p.Mana -= 25
+				isFind := false
+				for index, spell := range p.Spells {
+					if spell.SpellName == "Pogo" && spell.Quantity > 0 {
+						isFind = true
+						p.Spells[index].Quantity -= 1
+						for i := 1; i <= 3; i++ {
+							fmt.Printf("Vous lancez %s et brûlez %s pour %v dégâts .\n", spell.SpellName, enemy.Name, (spell.Damage / 2))
+							enemy.Health -= (spell.Damage / 2)
+							time.Sleep(time.Second * 1)
+						}
+						break
+					}
+				}
+				if !isFind {
+					fmt.Println("Vous ne possédez pas cette compétence!")
+				}
 			} else {
-				fmt.Println("Pas assez de mana haha.")
-				time.Sleep(500 * time.Millisecond)
+				fmt.Println("Pas assez de mana!")
 			}
 		case 3:
+			if p.Mana >= 30 {
+				isFind := false
+				for index, spell := range p.Spells {
+					if spell.SpellName == "Grenade" && spell.Quantity > 0 {
+						isFind = true
+						p.Spells[index].Quantity -= 1
+						for i := 1; i <= 3; i++ {
+							fmt.Printf("Vous lancez une %s et infligez %d de dégats.\n", spell.SpellName, spell.Damage)
+							enemy.Health -= spell.Damage
+						}
+						break
+					}
+				}
+				if !isFind {
+					fmt.Println("Vous ne possédez pas cette compétence!")
+				}
+			} else {
+				fmt.Println("Pas assez de mana!")
+			}
+
+		case 4:
 			inventory.UseItemFromInventory("Potion de Soin")
 			time.Sleep(500 * time.Millisecond)
 			player.UseItem("Potion de Soin ")

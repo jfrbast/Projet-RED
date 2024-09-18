@@ -11,6 +11,7 @@ type Item struct {
 type Spells struct {
 	SpellName string
 	Quantity  int
+	Damage    int
 }
 
 type Player struct {
@@ -40,10 +41,10 @@ var player Player
 
 func InitializePlayer(name string, agentChoice int) {
 	player.Name = name
-	player.Credits = 3000000000
-	ItemToInventory("Potion de Soin", 2)
-	ItemToInventory("Spell 1", 1)
-	ItemToInventory("Spell 2", 1)
+	player.Credits = 300
+	player.Inventory = []Item{{Name: "Potion de Soin", Quantity: 2}}
+	player.Inventory = []Item{{Name: "Spell 1", Quantity: 0}}
+	player.Inventory = []Item{{Name: "Spell 2", Quantity: 0}}
 	player.boots = false
 	player.chestplate = false
 	player.helmet = false
@@ -55,7 +56,6 @@ func InitializePlayer(name string, agentChoice int) {
 	player.UpInv = 0
 	player.Initiative = 10
 	if player.XP == player.Xplvl {
-
 		player.Xplvl += 5
 		player.Level += 1
 		player.XP = 0
@@ -151,4 +151,14 @@ func ToLower(s string) string {
 
 	}
 	return result
+}
+
+var spell Spells
+
+func InitializeSpell() {
+	Spell1 := Spells{"Pogo", 0, 20}
+	Spell2 := Spells{"Grenade", 0, 30}
+	fmt.Println(Spell1, Spell2)
+	ItemToInventory("Pogo", 0)
+	ItemToInventory("Grenade", 0)
 }
