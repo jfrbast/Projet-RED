@@ -35,57 +35,108 @@ func VisitShop() {
 	}
 
 	switch choice {
+
 	case 1:
 
-	case 2:
-
-		if players.PotionGratuite == true {
-			players.PotionGratuite = false
-			player.ItemToInventory("Potion de Soin", 1)
-			fmt.Println("La Première est gratuite !.")
-			time.Sleep(3 * time.Second)
-		} else {
-			if players.Credits >= 50 {
+		if players.CheckInventory() == true {
+			if players.PotionGratuite == true {
+				players.PotionGratuite = false
 				player.ItemToInventory("Potion de Soin", 1)
-				players.Credits -= 50
-				fmt.Println("Vous avez acheté une potion.")
+				fmt.Println("La Première est gratuite !.")
 				time.Sleep(3 * time.Second)
 			} else {
-				fmt.Println("Vous n'avez pas assez de crédits.")
-				time.Sleep(3 * time.Second)
+				if players.Credits >= 50 {
+					player.ItemToInventory("Potion de Soin", 1)
+					players.Credits -= 50
+					fmt.Println("Vous avez acheté une potion.")
+					time.Sleep(3 * time.Second)
+				} else {
+					fmt.Println("Vous n'avez pas assez de crédits.")
+					time.Sleep(3 * time.Second)
+				}
+				VisitShop()
 			}
+		} else {
+			color.Red("Plus assez d'espace dans votre inventaire.")
+		}
+
+	case 2:
+		if players.CheckInventory() == true {
+			if players.Credits >= 100 {
+				players.Mana += 25
+				players.Credits -= 100
+				fmt.Println("Vous avez acheté une Potion de mana.")
+			} else {
+				fmt.Println("Vous n'avez pas assez de crédits.")
+			}
+			time.Sleep(3 * time.Second)
 			VisitShop()
+		} else {
+			color.Red("Plus assez d'espace dans votre inventaire.")
 		}
 
 	case 3:
-		if players.Credits >= 100 {
-			players.Mana += 25
-			players.Credits -= 100
-			fmt.Println("Vous avez acheté une Potion de mana.")
+		if players.CheckInventory() == true {
+			if players.Credits >= 500 {
+				color.Green("Vous avez acheté un sac à main flambant neuf")
+				players.InventoryMax += 10
+			} else {
+				fmt.Println("Vous n'avez pas assez de crédits.")
+			}
+			time.Sleep(3 * time.Second)
+		} else {
+			color.Red("Plus assez d'espace dans votre inventaire.")
+		}
+
+	case 4:
+		if players.CheckInventory() == true {
+			if players.Credits >= 100 {
+
+				player.ItemToInventory("Spell 1", 1)
+				players.Credits -= 100
+				color.Green("Vous avez acheté votre spell 1 !")
+			} else {
+				fmt.Println("Vous n'avez pas assez de crédits.")
+			}
+			time.Sleep(3 * time.Second)
+			VisitShop()
+		} else {
+			color.Red("Plus assez d'espace dans votre inventaire.")
+		}
+
+	case 5:
+		if players.CheckInventory() == true {
+
+		} else {
+			color.Red("Plus assez d'espace dans votre inventaire.")
+		}
+		if players.Credits >= 150 {
+			player.ItemToInventory("Spell 2", 1)
+			players.Credits -= 150
+			color.Green("Vous avez acheté spell 2 !")
 		} else {
 			fmt.Println("Vous n'avez pas assez de crédits.")
 		}
+		time.Sleep(3 * time.Second)
 		VisitShop()
-	case 4:
-		if players.Credits >= 500 {
-			//++slot
-		}
-	case 5:
-		if players.Credits >= 100 {
-			player.ItemToInventory("Spell 1", 1)
-		}
+
 	case 6:
-		if players.Credits >= 150 {
-			player.ItemToInventory("Spell 2", 1)
-		}
+		if players.CheckInventory() == true {
+			if players.Credits >= 5000 {
+				color.Green("Jérémie vous accompagne, il vous sera de grande aide !")
+				player.ItemToInventory("Jérémie l'intrépide", 1)
+				players.Credits -= 5000
+			} else {
+				fmt.Println("Vous n'avez pas assez de crédits.")
+			}
+			time.Sleep(3 * time.Second)
+			VisitShop()
 
-	case 7:
-
-		if players.Credits >= 5000 {
-			fmt.Println("Jérémie vous accompagne, il vous sera de grande aide !")
-			player.ItemToInventory("Jérémie", 1)
+		} else {
+			color.Red("Plus assez d'espace dans votre inventaire.")
 		}
 
 	}
+
 	fmt.Println("———————————————————————————————————————————————")
 }

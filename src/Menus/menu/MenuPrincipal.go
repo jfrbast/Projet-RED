@@ -25,12 +25,14 @@ func Menu() {
 		color.White("5. Aller au Front !")
 		color.Red("6. Quitter.")
 		color.White("———————————————————————————————————————————————")
-
-		_, err := fmt.Scan(&ans)
-		if err != nil {
-			return
+		for {
+			_, err := fmt.Scan(&ans)
+			if err != nil || !(1 <= ans && ans <= 7) {
+				fmt.Println("Chef ?")
+				continue
+			}
+			break
 		}
-
 		switch ans {
 		case 1:
 			inventory.ShowInventory()

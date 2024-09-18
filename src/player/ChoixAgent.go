@@ -1,6 +1,8 @@
 package player
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Item struct {
 	Name     string
@@ -26,6 +28,10 @@ type Player struct {
 	boots          bool
 	chestplate     bool
 	PotionGratuite bool
+	XP             int
+	Level          int
+	Xplvl          int
+	InventoryMax   int
 	Radianite      int
 }
 
@@ -42,6 +48,16 @@ func InitializePlayer(name string, agentChoice int) {
 	player.chestplate = false
 	player.helmet = false
 	player.PotionGratuite = true
+	player.InventoryMax = 10
+	player.XP = 0
+	player.Level = 1
+	player.Xplvl = 10
+	if player.XP == player.Xplvl {
+
+		player.Xplvl += 5
+		player.Level += 1
+		player.XP = 0
+	}
 
 	switch agentChoice {
 	case 1:
@@ -98,4 +114,39 @@ func ItemToInventory(itemName string, quantity int) {
 		}
 	}
 	player.Inventory = append(player.Inventory, Item{Name: itemName, Quantity: quantity})
+}
+func (p *Player) CheckInventory() bool {
+	count := 0
+	for _, items := range p.Inventory {
+		count = count + items.Quantity
+		if count >= p.InventoryMax {
+			return true
+		}
+	}
+	fmt.Println(count, "/", p.InventoryMax)
+	return false
+}
+func IsAlpha(s string) bool {
+	for i := 0; i < len(s); i++ {
+		if !(s[i] >= 97 && s[i] <= 122 || s[i] >= 65 && s[i] <= 90) {
+			return false
+		}
+	}
+	return true
+}
+func ToLower(s string) string {
+	result := ""
+	for i, char := range s {
+		if i >= 1 {
+			if char >= 'A' && char <= 'Z' {
+				result += string(char + 32)
+			} else {
+				result += string(char)
+			}
+		} else {
+			result += string(char)
+		}
+
+	}
+	return result
 }
