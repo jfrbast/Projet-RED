@@ -43,7 +43,7 @@ func Menu() {
 		case 3:
 			Shop.VisitShop()
 		case 4:
-			Forge.VisitForge()
+			forge.VisitForge()
 		case 5:
 			combat.StartCombat()
 		case 7:

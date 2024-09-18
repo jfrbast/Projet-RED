@@ -16,6 +16,12 @@ func ShowStats() {
 	fmt.Printf("Attaque: %d\n", player.Attack)
 	fmt.Printf("Xp: %d\n", player.XP)
 	fmt.Printf("Level: %d\n", player.Level)
+	fmt.Printf("Initiative : %d \n", player.Initiative)
+	fmt.Printf("Limite d'inventaire : %d \n", player.InventoryMax)
+	fmt.Printf("Chestplate : %v \n", player.Chestplate)
+	fmt.Printf("Helmet : %v \n", player.Helmet)
+	fmt.Printf("Boots : %v \n", player.Boots)
+
 	fmt.Println("———————————————————————————————————————————————")
 	time.Sleep(5 * time.Second)
 }

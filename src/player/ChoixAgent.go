@@ -25,9 +25,9 @@ type Player struct {
 	Agent          string
 	Inventory      []Item
 	Spells         [2]Spells
-	helmet         bool
-	boots          bool
-	chestplate     bool
+	Helmet         bool
+	Boots          bool
+	Chestplate     bool
 	PotionGratuite bool
 	XP             int
 	Level          int
@@ -43,11 +43,11 @@ func InitializePlayer(name string, agentChoice int) {
 	player.Name = name
 	player.Credits = 300
 	player.Inventory = []Item{{Name: "Potion de Soin", Quantity: 2}}
-	player.Inventory = []Item{{Name: "Spell 1", Quantity: 0}}
-	player.Inventory = []Item{{Name: "Spell 2", Quantity: 0}}
-	player.boots = false
-	player.chestplate = false
-	player.helmet = false
+	ItemToInventory("Pogo", 0)
+	ItemToInventory("Grenade", 0)
+	player.Boots = false
+	player.Chestplate = false
+	player.Helmet = false
 	player.PotionGratuite = true
 	player.InventoryMax = 10
 	player.XP = 0
@@ -55,11 +55,6 @@ func InitializePlayer(name string, agentChoice int) {
 	player.Xplvl = 10
 	player.UpInv = 0
 	player.Initiative = 10
-	if player.XP == player.Xplvl {
-		player.Xplvl += 5
-		player.Level += 1
-		player.XP = 0
-	}
 
 	switch agentChoice {
 	case 1:
@@ -161,4 +156,22 @@ func InitializeSpell() {
 	fmt.Println(Spell1, Spell2)
 	ItemToInventory("Pogo", 0)
 	ItemToInventory("Grenade", 0)
+}
+func HasEnoughRadianite(required int) bool {
+	for _, item := range player.Inventory {
+		if item.Name == "Radianite" && item.Quantity >= required {
+			return true
+		}
+	}
+	return false
+}
+
+func UseRadianite(amount int) {
+	for i, item := range player.Inventory {
+		if item.Name == "Radianite" {
+			player.Inventory[i].Quantity -= amount
+			fmt.Printf("%d unités de radianite ont été utilisées.\n", amount)
+			break
+		}
+	}
 }

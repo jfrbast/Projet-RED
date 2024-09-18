@@ -69,9 +69,13 @@ func StartCombat() {
 		time.Sleep(500 * time.Millisecond)
 		fmt.Println("1. Attaque basique,classique")
 		time.Sleep(500 * time.Millisecond)
-		fmt.Println("2. Utiliser un sort (25 mana)")
+		fmt.Println("2. Utiliser Pogo(25 mana)")
 		time.Sleep(500 * time.Millisecond)
-		fmt.Println("3. Utiliser une potion")
+		fmt.Println("3.Utiliser Grenade (30 mana)")
+		time.Sleep(500 * time.Millisecond)
+		fmt.Println("4. Utiliser une potion")
+		time.Sleep(500 * time.Millisecond)
+		fmt.Println("5.Appeler G-Rémy au combat ! ")
 
 		var action int
 		_, err := fmt.Scan(&action)
@@ -128,10 +132,24 @@ func StartCombat() {
 			}
 
 		case 4:
+
 			inventory.UseItemFromInventory("Potion de Soin")
 			time.Sleep(500 * time.Millisecond)
 			player.UseItem("Potion de Soin ")
 			time.Sleep(500 * time.Millisecond)
+		case 5:
+			if player.UseItem("Jérémie l'intrépide") {
+				time.Sleep(500 * time.Millisecond)
+				fmt.Println("G-Rémy vient à votre secours !")
+				time.Sleep(2000 * time.Millisecond)
+				fmt.Println("G-Rémy semble avoir peur ?!?")
+				time.Sleep(2000 * time.Millisecond)
+				fmt.Println("G-Rémy prend la fuite ?")
+				time.Sleep(2000 * time.Millisecond)
+				color.Red("G-Rémy est parti tout comme vos 5000 crédits...\n")
+				time.Sleep(500 * time.Millisecond)
+			}
+
 		default:
 			fmt.Println("Action non reconnu, essaye encore.")
 			time.Sleep(500 * time.Millisecond)
@@ -170,6 +188,12 @@ func StartCombat() {
 			p.Credits += 300
 			p.XP += 10
 			p.Initiative += 1
+			if p.XP >= 10 {
+				p.Level++
+				p.XP = 0
+				p.Xplvl += 7
+			}
+			player.ItemToInventory("Radianite", 2)
 			break
 		}
 	}
