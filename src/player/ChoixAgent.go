@@ -9,6 +9,7 @@ type Item struct {
 type Spells struct {
 	SpellName string
 	Quantity  int
+	Damage    int
 }
 
 type Player struct {
@@ -108,4 +109,14 @@ func ItemToInventory(itemName string, quantity int) {
 		}
 	}
 	player.Inventory = append(player.Inventory, Item{Name: itemName, Quantity: quantity})
+}
+
+var spell Spells
+
+func InitializeSpell() {
+	Spell1 := Spells{"Pogo", 0, 20}
+	Spell2 := Spells{"Grenade", 0, 30}
+	fmt.Println(Spell1, Spell2)
+	ItemToInventory("Pogo", 0)
+	ItemToInventory("Grenade", 0)
 }
