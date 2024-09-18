@@ -32,6 +32,8 @@ type Player struct {
 	Level          int
 	Xplvl          int
 	InventoryMax   int
+	UpInv          int
+	Initiative     int
 }
 
 var player Player
@@ -50,6 +52,8 @@ func InitializePlayer(name string, agentChoice int) {
 	player.XP = 0
 	player.Level = 1
 	player.Xplvl = 10
+	player.UpInv = 0
+	player.Initiative = 10
 	if player.XP == player.Xplvl {
 
 		player.Xplvl += 5

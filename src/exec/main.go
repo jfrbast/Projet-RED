@@ -54,7 +54,6 @@ func main() {
 		color.Red("4. Phoenix")
 		color.White("———————————————————————————————————————————————")
 		_, err = fmt.Scan(&agentChoice)
-		color.Green("VOus avez choisis", agentChoice)
 		time.Sleep(2 * time.Second)
 		agentChoiceNbr, err = strconv.Atoi(agentChoice)
 		if err != nil || !(1 <= agentChoiceNbr && agentChoiceNbr <= 4) {

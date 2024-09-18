@@ -63,9 +63,9 @@ func VisitShop() {
 	case 2:
 		if players.CheckInventory() == true {
 			if players.Credits >= 100 {
-				players.Mana += 25
 				players.Credits -= 100
 				fmt.Println("Vous avez acheté une Potion de mana.")
+				player.ItemToInventory("Potion de Mana", 1)
 			} else {
 				fmt.Println("Vous n'avez pas assez de crédits.")
 			}
@@ -77,9 +77,10 @@ func VisitShop() {
 
 	case 3:
 		if players.CheckInventory() == true {
-			if players.Credits >= 500 {
+			if players.Credits >= 500 && players.UpInv < 3 {
 				color.Green("Vous avez acheté un sac à main flambant neuf")
-				players.InventoryMax += 10
+				players.InventoryMax += 5
+				players.UpInv++
 			} else {
 				fmt.Println("Vous n'avez pas assez de crédits.")
 			}
@@ -106,19 +107,18 @@ func VisitShop() {
 
 	case 5:
 		if players.CheckInventory() == true {
-
+			if players.Credits >= 300 {
+				player.ItemToInventory("Spell 2", 1)
+				players.Credits -= 300
+				color.Green("Vous avez acheté spell 2 !")
+			} else {
+				fmt.Println("Vous n'avez pas assez de crédits.")
+			}
+			time.Sleep(3 * time.Second)
+			VisitShop()
 		} else {
 			color.Red("Plus assez d'espace dans votre inventaire.")
 		}
-		if players.Credits >= 150 {
-			player.ItemToInventory("Spell 2", 1)
-			players.Credits -= 150
-			color.Green("Vous avez acheté spell 2 !")
-		} else {
-			fmt.Println("Vous n'avez pas assez de crédits.")
-		}
-		time.Sleep(3 * time.Second)
-		VisitShop()
 
 	case 6:
 		if players.CheckInventory() == true {
