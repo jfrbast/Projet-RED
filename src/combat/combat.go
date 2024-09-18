@@ -15,33 +15,51 @@ func StartCombat() {
 	var enemy player.Player
 	if p.Level < 3 {
 		enemy = player.Player{
-			Name:   "Kèr et dîne",
-			Health: 50,
-			Attack: 5,
+			Name:       "Kèr et dîne",
+			Health:     50,
+			Attack:     5,
+			Initiative: 8,
 		}
 	}
 	if p.Level > 3 && p.Level < 6 {
 		enemy = player.Player{
-			Name:   "Antonain",
-			Health: 30,
-			Attack: 30,
+			Name:       "Antonain",
+			Health:     30,
+			Attack:     30,
+			Initiative: 13,
 		}
 	}
 	if p.Level > 6 && p.Level < 10 {
 		enemy = player.Player{
-			Name:   "Phabieau",
-			Health: 70,
-			Attack: 13,
+			Name:       "Phabieau",
+			Health:     70,
+			Attack:     13,
+			Initiative: 15,
 		}
 	}
 	if p.Level > 10 {
 		enemy = player.Player{
-			Name:   "Lillhian",
-			Health: 100,
-			Attack: 19,
+			Name:       "Lillhian",
+			Health:     100,
+			Attack:     19,
+			Initiative: 25,
 		}
 	}
-
+	fmt.Printf("Votre Initiative: %d | Initiative de l'ennemi (%s): %d\n", p.Initiative, enemy.Name, enemy.Initiative)
+	if enemy.Initiative > p.Initiative {
+		if enemy.Name == "Kèr et dîne" {
+			fmt.Printf("Kèr attaque et vous inflige %d dégâts.\n", enemy.Attack)
+			time.Sleep(300 * time.Millisecond)
+			fmt.Printf("Dîne attaque et vous inflige %d dégâts.\n", enemy.Attack)
+			time.Sleep(500 * time.Millisecond)
+			p.Health -= enemy.Attack
+			p.Health -= enemy.Attack
+		} else {
+			fmt.Printf("%s attaque et vous inflige %d dégâts.\n", enemy.Name, enemy.Attack)
+			time.Sleep(500 * time.Millisecond)
+			p.Health -= enemy.Attack
+		}
+	}
 	for enemy.Health > 0 && p.Health > 0 {
 		fmt.Printf("Ennemi: %s - Santé: %d\n", enemy.Name, enemy.Health)
 		time.Sleep(500 * time.Millisecond)
@@ -65,20 +83,51 @@ func StartCombat() {
 		switch action {
 		case 1:
 			fmt.Printf("Vous attaquez %s et lui inflige %d dégâts.\n", enemy.Name, p.Attack)
-			time.Sleep(500 * time.Millisecond)
 			enemy.Health -= p.Attack
 
 		case 2:
 			if p.Mana >= 25 {
-				fmt.Printf("Vous utilisez un sort et infligez %d dégâts à %s.\n", p.Attack+10, enemy.Name)
-				time.Sleep(500 * time.Millisecond)
-				enemy.Health -= (p.Attack + 10)
-				p.Mana -= 25
+				isFind := false
+				for index, spell := range p.Spells {
+					if spell.SpellName == "Pogo" && spell.Quantity > 0 {
+						isFind = true
+						p.Spells[index].Quantity -= 1
+						for i := 1; i <= 3; i++ {
+							fmt.Printf("Vous lancez %s et brûlez %s pour %v dégâts .\n", spell.SpellName, enemy.Name, (spell.Damage / 2))
+							enemy.Health -= (spell.Damage / 2)
+							time.Sleep(time.Second * 1)
+						}
+						break
+					}
+				}
+				if !isFind {
+					fmt.Println("Vous ne possédez pas cette compétence!")
+				}
 			} else {
-				fmt.Println("Pas assez de mana haha.")
-				time.Sleep(500 * time.Millisecond)
+				fmt.Println("Pas assez de mana!")
 			}
 		case 3:
+			if p.Mana >= 30 {
+				isFind := false
+				for index, spell := range p.Spells {
+					if spell.SpellName == "Grenade" && spell.Quantity > 0 {
+						isFind = true
+						p.Spells[index].Quantity -= 1
+						for i := 1; i <= 3; i++ {
+							fmt.Printf("Vous lancez une %s et infligez %d de dégats.\n", spell.SpellName, spell.Damage)
+							enemy.Health -= spell.Damage
+						}
+						break
+					}
+				}
+				if !isFind {
+					fmt.Println("Vous ne possédez pas cette compétence!")
+				}
+			} else {
+				fmt.Println("Pas assez de mana!")
+			}
+
+		case 4:
 			inventory.UseItemFromInventory("Potion de Soin")
 			time.Sleep(500 * time.Millisecond)
 			player.UseItem("Potion de Soin ")
@@ -120,6 +169,7 @@ func StartCombat() {
 			time.Sleep(5 * time.Second)
 			p.Credits += 300
 			p.XP += 10
+			p.Initiative += 1
 			break
 		}
 	}

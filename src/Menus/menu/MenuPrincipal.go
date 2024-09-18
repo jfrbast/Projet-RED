@@ -10,6 +10,7 @@ import (
 	"projetred/Menus/inventory"
 	"projetred/Menus/stats"
 	"projetred/combat"
+	"time"
 )
 
 func Menu() {
@@ -23,7 +24,8 @@ func Menu() {
 		color.Yellow("3. Aller voir le marchand à metro.")
 		fmt.Println("4. Aller voir le Forgeron.")
 		color.White("5. Aller au Front !")
-		color.Red("6. Quitter.")
+		color.White("6.Qui sont-ils ?")
+		color.Red("7. Quitter.")
 		color.White("———————————————————————————————————————————————")
 		for {
 			_, err := fmt.Scan(&ans)
@@ -44,13 +46,23 @@ func Menu() {
 			Forge.VisitForge()
 		case 5:
 			combat.StartCombat()
-		case 6:
+		case 7:
+
 			fmt.Println("à la revoyure !")
 			color.White("———————————————————————————————————————————————")
 			os.Exit(1)
+		case 6:
+			Menusecrect()
 		default:
 			fmt.Println("T'as pas compris la consigne, fais un effort stp.")
 			color.White("———————————————————————————————————————————————")
 		}
 	}
+}
+
+func Menusecrect() {
+	fmt.Println("les artistes cachés dans le pdf sont : partie 2- ABBA |||| partie 3-Steven Spielberg !")
+	time.Sleep(5 * time.Second)
+	return
+
 }
