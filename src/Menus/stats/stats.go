@@ -2,12 +2,14 @@ package stats
 
 import (
 	"fmt"
+	"github.com/fatih/color"
 	"projetred/player"
 	"time"
 )
 
 func ShowStats() {
 	player := player.GetPlayer()
+	color.Cyan("      _/_/_/    _/                  _/               \n   _/        _/_/_/_/    _/_/_/  _/_/_/_/    _/_/_/  \n    _/_/      _/      _/    _/    _/      _/_/       \n       _/    _/      _/    _/    _/          _/_/    \n_/_/_/        _/_/    _/_/_/      _/_/  _/_/_/       ")
 	fmt.Println("Vous regardez vos Stats.")
 	fmt.Printf("Nom: %s\n", player.Name)
 	fmt.Printf("Agent: %s\n", player.Agent)

@@ -41,7 +41,7 @@ var player Player
 
 func InitializePlayer(name string, agentChoice int) {
 	player.Name = name
-	player.Credits = 300
+	player.Credits = 3000000
 	player.Inventory = []Item{{Name: "Potion de Soin", Quantity: 2}}
 	ItemToInventory("Pogo", 0)
 	ItemToInventory("Grenade", 0)
@@ -66,10 +66,10 @@ func InitializePlayer(name string, agentChoice int) {
 		player.Attack = 10
 	case 2:
 		player.Agent = "Sage"
-		player.Health = 100
-		player.MAX_Health = 100
-		player.Mana = 70
-		player.Attack = 8
+		player.Health = 80
+		player.MAX_Health = 80
+		player.Mana = 90
+		player.Attack = 7
 	case 3:
 		player.Agent = "Skye"
 		player.Health = 110
@@ -78,10 +78,10 @@ func InitializePlayer(name string, agentChoice int) {
 		player.Attack = 9
 	case 4:
 		player.Agent = "Phoenix"
-		player.Health = 90
-		player.MAX_Health = 90
-		player.Mana = 80
-		player.Attack = 12
+		player.Health = 100
+		player.MAX_Health = 100
+		player.Mana = 70
+		player.Attack = 11
 	default:
 		player.Agent = "Inconnu"
 	}
@@ -113,7 +113,7 @@ func ItemToInventory(itemName string, quantity int) {
 	player.Inventory = append(player.Inventory, Item{Name: itemName, Quantity: quantity})
 }
 func (p *Player) CheckInventory() bool {
-	count := 0
+	count := 1
 	for _, items := range p.Inventory {
 		count = count + items.Quantity
 		if count >= p.InventoryMax {

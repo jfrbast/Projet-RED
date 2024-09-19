@@ -12,6 +12,7 @@ import (
 )
 
 func main() {
+	src.ClearScreen()
 	var agentName string
 	var agentChoice string
 	fmt.Println('\n',
@@ -48,10 +49,10 @@ func main() {
 	for {
 		color.White("———————————————————————————————————————————————")
 		fmt.Println("Veuillez choisir votre agent:")
-		color.Yellow("1. BRIM")
-		color.Cyan("2. Sage")
-		color.Green("3. Skye")
-		color.Red("4. Phoenix")
+		color.Yellow("1. BRIM (résistant)")
+		color.Cyan("2. Sage (-résistante +Mana)")
+		color.Green("3. Skye (Moyen)")
+		color.Red("4. Phoenix (Polyvalent)")
 		color.White("———————————————————————————————————————————————")
 		_, err = fmt.Scan(&agentChoice)
 		time.Sleep(2 * time.Second)

@@ -3,7 +3,9 @@ package inventory
 import (
 	"fmt"
 	"github.com/fatih/color"
+	src "projetred"
 	"projetred/player"
+	"time"
 )
 
 func ShowInventory() {
@@ -11,6 +13,8 @@ func ShowInventory() {
 	var choice int
 
 	for {
+		src.ClearScreen()
+		color.Cyan("    _/_/_/                                              _/                                   \n     _/    _/_/_/    _/      _/    _/_/    _/_/_/    _/_/_/_/    _/_/    _/  _/_/  _/    _/  \n    _/    _/    _/  _/      _/  _/_/_/_/  _/    _/    _/      _/    _/  _/_/      _/    _/   \n   _/    _/    _/    _/  _/    _/        _/    _/    _/      _/    _/  _/        _/    _/    \n_/_/_/  _/    _/      _/        _/_/_/  _/    _/      _/_/    _/_/    _/          _/_/_/     \n                                                                                     _/      \n                                                                                _/_/         ")
 		color.Cyan("Votre sac a dos :")
 		color.White("———————————————————————————————————————————————")
 
@@ -60,9 +64,8 @@ func UseItemFromInventory(itemName string) {
 	case "Potion de Mana":
 		if player.UseItem("Potion de Mana") {
 			p.Mana += 50
-			color.Green("Vous avez utilisé une Potion de Soin. Santé actuelle : %d/%d", p.Health, p.MAX_Health)
-		} else {
-			color.Red("Tu peux plus te soigner frerot.")
+			color.Green("Vous avez utilisé une Potion de Mana. Mana actuelle : %d", p.Mana)
+			time.Sleep(3 * time.Second)
 		}
 	default:
 		color.Red("tu peux pas l'utiliser !.")

@@ -17,6 +17,7 @@ func Menu() {
 	var ans int
 	for {
 		src.ClearScreen()
+		color.Cyan("    _/      _/                               \n   _/_/  _/_/    _/_/    _/_/_/    _/    _/  \n  _/  _/  _/  _/_/_/_/  _/    _/  _/    _/   \n _/      _/  _/        _/    _/  _/    _/    \n_/      _/    _/_/_/  _/    _/    _/_/_/     ")
 		color.White("Choisissez ce que vous voulez faire.")
 		color.White("———————————————————————————————————————————————")
 		color.Cyan("1. Regarder votre sac.")

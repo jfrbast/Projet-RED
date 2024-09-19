@@ -2,12 +2,16 @@ package forge
 
 import (
 	"fmt"
+	"github.com/fatih/color"
+	src "projetred"
 	"projetred/player"
+	"time"
 )
 
 func VisitForge() {
 	p := player.GetPlayer()
-
+	src.ClearScreen()
+	color.Cyan("    _/_/_/_/                                      \n   _/        _/_/    _/  _/_/    _/_/_/    _/_/   \n  _/_/_/  _/    _/  _/_/      _/    _/  _/_/_/_/  \n _/      _/    _/  _/        _/    _/  _/         \n_/        _/_/    _/          _/_/_/    _/_/_/    \n                                 _/               \n                            _/_/                  ")
 	fmt.Println("Bienvenue à la Forge !")
 	fmt.Println("Que voulez-vous forger ?")
 	fmt.Println("1. Casque (100 crédits + 2 unités de radianite)")
@@ -30,14 +34,22 @@ func VisitForge() {
 			p.Helmet = true
 			p.MAX_Health += 15
 			fmt.Println("Vous avez forgé un casque.")
+			time.Sleep(2 * time.Second)
+			VisitForge()
 
 		} else {
 			if p.Helmet {
 				fmt.Println("Vous possédez déjà un casque.")
+				time.Sleep(1 * time.Second)
+				VisitForge()
 			} else if !player.HasEnoughRadianite(2) {
 				fmt.Println("Vous n'avez pas assez de radianite.")
+				time.Sleep(1 * time.Second)
+				VisitForge()
 			} else {
 				fmt.Println("Vous n'avez pas assez de crédits.")
+				time.Sleep(1 * time.Second)
+				VisitForge()
 			}
 		}
 	case 2:
@@ -47,14 +59,22 @@ func VisitForge() {
 			p.Chestplate = true
 			p.MAX_Health += 30
 			fmt.Println("Vous avez forgé un plastron.")
+			time.Sleep(2 * time.Second)
+			VisitForge()
 
 		} else {
 			if p.Chestplate {
 				fmt.Println("Vous possédez déjà un plastron.")
+				time.Sleep(1 * time.Second)
+				VisitForge()
 			} else if !player.HasEnoughRadianite(4) {
 				fmt.Println("Vous n'avez pas assez de radianite.")
+				time.Sleep(1 * time.Second)
+				VisitForge()
 			} else {
 				fmt.Println("Vous n'avez pas assez de crédits.")
+				time.Sleep(1 * time.Second)
+				VisitForge()
 			}
 		}
 	case 3:
@@ -64,20 +84,31 @@ func VisitForge() {
 			p.Boots = true
 			fmt.Println("Vous avez forgé des bottes.")
 			p.MAX_Health += 20
+			time.Sleep(2 * time.Second)
+			VisitForge()
 
 		} else {
 			if p.Boots {
 				fmt.Println("Vous possédez déjà des bottes.")
+				time.Sleep(1 * time.Second)
+				VisitForge()
 			} else if !player.HasEnoughRadianite(3) {
 				fmt.Println("Vous n'avez pas assez de radianite.")
+				time.Sleep(1 * time.Second)
+				VisitForge()
 			} else {
 				fmt.Println("Vous n'avez pas assez de crédits.")
+				time.Sleep(1 * time.Second)
+				VisitForge()
 			}
 		}
 	case 4:
 		fmt.Println("Vous quittez la Forge.")
+		time.Sleep(2 * time.Second)
 		return
 	default:
-		fmt.Println("Choix non valide.")
+		color.Red("Choix non valide.")
+		time.Sleep(2 * time.Second)
+		VisitForge()
 	}
 }

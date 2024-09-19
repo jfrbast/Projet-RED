@@ -3,19 +3,23 @@ package combat
 import (
 	"fmt"
 	"github.com/fatih/color"
+	src "projetred"
 	"projetred/Menus/inventory"
 	"projetred/player"
 	"time"
 )
 
 func StartCombat() {
+	src.ClearScreen()
+	color.Cyan("     _/_/_/                            _/                    _/         _/  \n  _/          _/_/    _/_/_/  _/_/    _/_/_/      _/_/_/  _/_/_/_/     _/   \n _/        _/    _/  _/    _/    _/  _/    _/  _/    _/    _/         _/    \n_/        _/    _/  _/    _/    _/  _/    _/  _/    _/    _/                \n _/_/_/    _/_/    _/    _/    _/  _/_/_/      _/_/_/      _/_/     _/      ")
 	fmt.Println("Vous voulez vous battre, battez-vous !")
-	time.Sleep(1 * time.Second)
+	color.Red("//ATTENTION SI VOUS UTILISEZ UNE COMPETENCE QUE VOUS N'AVEZ PAS L'ENNEMI ATTAQUERA\\ \n")
+	time.Sleep(3 * time.Second)
 	p := player.GetPlayer()
 	var enemy player.Player
 	if p.Level < 3 {
 		enemy = player.Player{
-			Name:       "Kèr et dîne",
+			Name:       "Kèr et dîne le duo légendaire",
 			Health:     50,
 			Attack:     5,
 			Initiative: 8,
@@ -48,14 +52,14 @@ func StartCombat() {
 	fmt.Printf("Votre Initiative: %d | Initiative de l'ennemi (%s): %d\n", p.Initiative, enemy.Name, enemy.Initiative)
 	if enemy.Initiative > p.Initiative {
 		if enemy.Name == "Kèr et dîne" {
-			fmt.Printf("Kèr attaque et vous inflige %d dégâts.\n", enemy.Attack)
+			color.Red("Kèr attaque et vous inflige %d dégâts.\n", enemy.Attack)
 			time.Sleep(300 * time.Millisecond)
-			fmt.Printf("Dîne attaque et vous inflige %d dégâts.\n", enemy.Attack)
+			color.Red("Dîne attaque et vous inflige %d dégâts.\n", enemy.Attack)
 			time.Sleep(500 * time.Millisecond)
 			p.Health -= enemy.Attack
 			p.Health -= enemy.Attack
 		} else {
-			fmt.Printf("%s attaque et vous inflige %d dégâts.\n", enemy.Name, enemy.Attack)
+			color.Red("%s attaque et vous inflige %d dégâts.\n", enemy.Name, enemy.Attack)
 			time.Sleep(500 * time.Millisecond)
 			p.Health -= enemy.Attack
 		}
@@ -65,7 +69,7 @@ func StartCombat() {
 		time.Sleep(500 * time.Millisecond)
 		fmt.Printf("Votre Santé: %d, Mana: %d\n", p.Health, p.Mana)
 		time.Sleep(700 * time.Millisecond)
-		fmt.Println("Choisissez une action :")
+		color.Blue("Choisissez une action :\n")
 		time.Sleep(500 * time.Millisecond)
 		fmt.Println("1. Attaque basique,classique")
 		time.Sleep(500 * time.Millisecond)
@@ -75,7 +79,7 @@ func StartCombat() {
 		time.Sleep(500 * time.Millisecond)
 		fmt.Println("4. Utiliser une potion")
 		time.Sleep(500 * time.Millisecond)
-		fmt.Println("5.Appeler G-Rémy au combat ! ")
+		color.Yellow("5.Appeler G-Rémy au combat !\n ")
 
 		var action int
 		_, err := fmt.Scan(&action)
@@ -86,7 +90,7 @@ func StartCombat() {
 
 		switch action {
 		case 1:
-			fmt.Printf("Vous attaquez %s et lui inflige %d dégâts.\n", enemy.Name, p.Attack)
+			color.Green("Vous attaquez %s et lui inflige %d dégâts.\n", enemy.Name, p.Attack)
 			enemy.Health -= p.Attack
 
 		case 2:
@@ -140,13 +144,13 @@ func StartCombat() {
 		case 5:
 			if player.UseItem("Jérémie l'intrépide") {
 				time.Sleep(500 * time.Millisecond)
-				fmt.Println("G-Rémy vient à votre secours !")
-				time.Sleep(2000 * time.Millisecond)
-				fmt.Println("G-Rémy semble avoir peur ?!?")
-				time.Sleep(2000 * time.Millisecond)
-				fmt.Println("G-Rémy prend la fuite ?")
-				time.Sleep(2000 * time.Millisecond)
-				color.Red("G-Rémy est parti tout comme vos 5000 crédits...\n")
+				fmt.Println("Gé-ré-mi vient à votre secours !")
+				time.Sleep(1500 * time.Millisecond)
+				fmt.Println("Jérem semble avoir peur ?!?")
+				time.Sleep(1500 * time.Millisecond)
+				fmt.Println("G-rem-i prend la fuite ?")
+				time.Sleep(1500 * time.Millisecond)
+				color.Red("Jérémy est parti tout comme vos 5000 crédits...\n")
 				time.Sleep(500 * time.Millisecond)
 			}
 
@@ -157,7 +161,7 @@ func StartCombat() {
 
 		if enemy.Health > 0 {
 
-			if enemy.Name == "Kèr et dîne" {
+			if enemy.Name == "Kèr et dîne le duo légendaire" {
 				fmt.Printf("Kèr attaque et vous inflige %d dégâts.\n", enemy.Attack)
 				time.Sleep(300 * time.Millisecond)
 				fmt.Printf("Dîne attaque et vous inflige %d dégâts.\n", enemy.Attack)
@@ -181,14 +185,14 @@ func StartCombat() {
 			p.Credits += 100
 			break
 		} else if enemy.Health <= 0 {
-			fmt.Println("Vous avez vaincu le sous-fifre!")
+			color.Green("Vous avez vaincu le sous-fifre!\n")
 			time.Sleep(500 * time.Millisecond)
 			color.Yellow("vous avez gangné 300 crédits et 10 d'XP !")
 			time.Sleep(5 * time.Second)
 			p.Credits += 300
 			p.XP += 10
 			p.Initiative += 1
-			if p.XP >= 10 {
+			if p.XP >= p.Xplvl {
 				p.Level++
 				p.XP = 0
 				p.Xplvl += 7
