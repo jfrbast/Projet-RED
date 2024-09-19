@@ -102,7 +102,7 @@ func VisitShop() {
 			if players.Credits >= 100 {
 
 				players.Credits -= 100
-				color.Green("Vous avez acheté votre spell 1 !")
+				color.Green("Vous avez acheté votre Pogo !")
 				player.ItemToInventory("Pogo", 1)
 			} else {
 				fmt.Println("Vous n'avez pas assez de crédits.")

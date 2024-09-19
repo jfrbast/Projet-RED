@@ -129,10 +129,12 @@ func StartCombat() {
 					}
 				}
 				if !isFind {
-					fmt.Println("Vous ne possédez pas cette compétence!")
+					color.Red("Vous ne possédez pas cette compétence!")
+					time.Sleep(500 * time.Millisecond)
 				}
 			} else {
-				fmt.Println("Pas assez de mana!")
+				color.Red("Pas assez de mana!")
+				time.Sleep(500 * time.Millisecond)
 			}
 
 		case 4:

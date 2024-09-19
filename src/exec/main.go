@@ -49,7 +49,7 @@ func main() {
 	for {
 		color.White("———————————————————————————————————————————————")
 		fmt.Println("Veuillez choisir votre agent:")
-		color.Yellow("1. BRIM (résistant)")
+		color.Yellow("1. Brimstone (résistant)")
 		color.Cyan("2. Sage (-résistante +Mana)")
 		color.Green("3. Skye (Moyen)")
 		color.Red("4. Phoenix (Polyvalent)")
