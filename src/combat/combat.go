@@ -150,7 +150,7 @@ func StartCombat() {
 				time.Sleep(1500 * time.Millisecond)
 				fmt.Println("G-rem-i prend la fuite ?")
 				time.Sleep(1500 * time.Millisecond)
-				color.Red("Jérémy est parti tout comme vos 5000 crédits...\n")
+				color.Red("JérémY est parti tout comme vos 5000 crédits...\n")
 				time.Sleep(500 * time.Millisecond)
 			}
 
