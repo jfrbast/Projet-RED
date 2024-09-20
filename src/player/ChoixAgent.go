@@ -148,14 +148,23 @@ func ToLower(s string) string {
 	return result
 }
 
-var spell Spells
+func ItemToSpells(SpellName string, Quantity int, Damage int) {
+	for i, spells := range player.Spells {
+		if spells.SpellName == SpellName {
+			player.Spells[i].Quantity += Quantity
+			return
+		}
+	}
+	if SpellName == "Pogo" {
+		player.Spells[0] = Spells{SpellName: SpellName, Quantity: Quantity, Damage: Damage}
+	} else {
+		player.Spells[1] = Spells{SpellName: SpellName, Quantity: Quantity, Damage: Damage}
+	}
+}
 
 func InitializeSpell() {
-	Spell1 := Spells{"Pogo", 0, 20}
-	Spell2 := Spells{"Grenade", 0, 30}
-	fmt.Println(Spell1, Spell2)
-	ItemToInventory("Pogo", 0)
-	ItemToInventory("Grenade", 0)
+	ItemToSpells("Pogo", 0, 20)
+	ItemToSpells("Grenade", 0, 30)
 }
 func HasEnoughRadianite(required int) bool {
 	for _, item := range player.Inventory {

@@ -102,8 +102,9 @@ func VisitShop() {
 			if players.Credits >= 100 {
 
 				players.Credits -= 100
-				color.Green("Vous avez acheté votre Pogo !")
+				color.Green("Vous avez acheté Pogo !")
 				player.ItemToInventory("Pogo", 1)
+				player.ItemToSpells("Pogo", 1, 20)
 			} else {
 				fmt.Println("Vous n'avez pas assez de crédits.")
 			}
@@ -118,8 +119,9 @@ func VisitShop() {
 		if players.CheckInventory() == false {
 			if players.Credits >= 300 {
 				players.Credits -= 300
-				color.Green("Vous avez acheté grenade !")
+				color.Green("Vous avez acheté Grenade !")
 				player.ItemToInventory("Grenade", 1)
+				player.ItemToSpells("Grenade", 1, 30)
 			} else {
 				fmt.Println("Vous n'avez pas assez de crédits.")
 			}
@@ -128,6 +130,7 @@ func VisitShop() {
 		} else {
 			color.Red("Plus assez d'espace dans votre inventaire.")
 			time.Sleep(2 * time.Second)
+
 			VisitShop()
 		}
 	case 6:

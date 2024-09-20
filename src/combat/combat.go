@@ -100,6 +100,7 @@ func StartCombat() {
 					if spell.SpellName == "Pogo" && spell.Quantity > 0 {
 						isFind = true
 						p.Spells[index].Quantity -= 1
+						player.UseItem("Pogo")
 						for i := 1; i <= 3; i++ {
 							fmt.Printf("Vous lancez %s et brûlez %s pour %v dégâts .\n", spell.SpellName, enemy.Name, (spell.Damage / 2))
 							enemy.Health -= (spell.Damage / 2)
@@ -121,10 +122,9 @@ func StartCombat() {
 					if spell.SpellName == "Grenade" && spell.Quantity > 0 {
 						isFind = true
 						p.Spells[index].Quantity -= 1
-						for i := 1; i <= 3; i++ {
-							fmt.Printf("Vous lancez une %s et infligez %d de dégats.\n", spell.SpellName, spell.Damage)
-							enemy.Health -= spell.Damage
-						}
+						player.UseItem("Grenade")
+						fmt.Printf("Vous lancez une %s et infligez %d de dégats.\n", spell.SpellName, spell.Damage)
+						enemy.Health -= spell.Damage
 						break
 					}
 				}
