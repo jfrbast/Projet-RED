@@ -31,7 +31,7 @@ trello :
 
 
 # Auteur 
-- [Omrane RIADHI](https://github.com/Omrane02/Omrane02)
+- [Omrane RIAHI](https://github.com/Omrane02/Omrane02)
 - [Nans MOLL](https://github.com/nans-moll)
 -  [Bastien JOUFFRE](https://github.com/jfrbast)
 
