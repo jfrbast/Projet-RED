@@ -147,10 +147,15 @@ func StartCombat() {
 			}
 
 		case 4:
-			player.UseItem("Potion de Soin ")
-			time.Sleep(500 * time.Millisecond)
-			inventory.UseItemFromInventory("Potion de Soin")
-			time.Sleep(500 * time.Millisecond)
+			if player.UseItem("Potion de Soin") {
+				player.UseItem("Potion de Soin ")
+				time.Sleep(500 * time.Millisecond)
+				inventory.UseItemFromInventory("Potion de Soin")
+				time.Sleep(500 * time.Millisecond)
+			} else {
+				color.Red("Vous n'avez pas cette potion")
+				continue
+			}
 
 		case 5:
 			if player.UseItem("Jérémie l'intrépide") {
