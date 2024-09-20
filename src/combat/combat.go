@@ -25,7 +25,7 @@ func StartCombat() {
 			Initiative: 8,
 		}
 	}
-	if p.Level > 3 && p.Level < 6 {
+	if p.Level >= 3 && p.Level < 6 {
 		enemy = player.Player{
 			Name:       "Antonain",
 			Health:     30,
@@ -33,7 +33,7 @@ func StartCombat() {
 			Initiative: 13,
 		}
 	}
-	if p.Level > 6 && p.Level < 10 {
+	if p.Level >= 6 && p.Level < 10 {
 		enemy = player.Player{
 			Name:       "Phabieau",
 			Health:     70,
@@ -41,7 +41,7 @@ func StartCombat() {
 			Initiative: 15,
 		}
 	}
-	if p.Level > 10 {
+	if p.Level >= 10 {
 		enemy = player.Player{
 			Name:       "Lillhian",
 			Health:     100,
@@ -100,17 +100,22 @@ func StartCombat() {
 					if spell.SpellName == "Pogo" && spell.Quantity > 0 {
 						isFind = true
 						p.Spells[index].Quantity -= 1
-						player.UseItem("Pogo")
-						for i := 1; i <= 3; i++ {
-							fmt.Printf("Vous lancez %s et brûlez %s pour %v dégâts .\n", spell.SpellName, enemy.Name, (spell.Damage / 2))
-							enemy.Health -= (spell.Damage / 2)
-							time.Sleep(time.Second * 1)
-						}
-						break
+
+						fmt.Printf("Vous lancez %s et brûlez %s pour %v dégâts .\n", spell.SpellName, enemy.Name, (spell.Damage))
+						enemy.Health -= (spell.Damage / 2)
+						time.Sleep(time.Second * 1)
+						fmt.Printf("vous brûlez %s pour %v dégâts .\n", enemy.Name, (spell.Damage))
+						enemy.Health -= (spell.Damage / 2)
+						time.Sleep(time.Second * 1)
+						fmt.Printf("Vous brûlez %s pour %v dégâts .\n", enemy.Name, (spell.Damage))
+						enemy.Health -= (spell.Damage / 2)
+						time.Sleep(time.Second * 1)
+
 					}
+					break
 				}
 				if !isFind {
-					fmt.Println("Vous ne possédez pas cette compétence!")
+					color.Red("Vous ne possédez pas cette compétence!\n")
 				}
 			} else {
 				fmt.Println("Pas assez de mana!")
@@ -122,7 +127,6 @@ func StartCombat() {
 					if spell.SpellName == "Grenade" && spell.Quantity > 0 {
 						isFind = true
 						p.Spells[index].Quantity -= 1
-						player.UseItem("Grenade")
 						fmt.Printf("Vous lancez une %s et infligez %d de dégats.\n", spell.SpellName, spell.Damage)
 						enemy.Health -= spell.Damage
 						break

@@ -113,7 +113,7 @@ func ItemToInventory(itemName string, quantity int) {
 	player.Inventory = append(player.Inventory, Item{Name: itemName, Quantity: quantity})
 }
 func (p *Player) CheckInventory() bool {
-	count := 1
+	count := 2
 	for _, items := range p.Inventory {
 		count = count + items.Quantity
 		if count >= p.InventoryMax {
@@ -148,24 +148,8 @@ func ToLower(s string) string {
 	return result
 }
 
-func ItemToSpells(SpellName string, Quantity int, Damage int) {
-	for i, spells := range player.Spells {
-		if spells.SpellName == SpellName {
-			player.Spells[i].Quantity += Quantity
-			return
-		}
-	}
-	if SpellName == "Pogo" {
-		player.Spells[0] = Spells{SpellName: SpellName, Quantity: Quantity, Damage: Damage}
-	} else {
-		player.Spells[1] = Spells{SpellName: SpellName, Quantity: Quantity, Damage: Damage}
-	}
-}
+var spell Spells
 
-func InitializeSpell() {
-	ItemToSpells("Pogo", 0, 20)
-	ItemToSpells("Grenade", 0, 30)
-}
 func HasEnoughRadianite(required int) bool {
 	for _, item := range player.Inventory {
 		if item.Name == "Radianite" && item.Quantity >= required {
@@ -182,5 +166,18 @@ func UseRadianite(amount int) {
 			fmt.Printf("%d unités de radianite ont été utilisées.\n", amount)
 			break
 		}
+	}
+}
+func ItemToSpells(SpellName string, Quantity int, Damage int) {
+	for i, spells := range player.Spells {
+		if spells.SpellName == SpellName {
+			player.Spells[i].Quantity += Quantity
+			return
+		}
+	}
+	if SpellName == "Pogo" {
+		player.Spells[0] = Spells{SpellName: SpellName, Quantity: Quantity, Damage: Damage}
+	} else {
+		player.Spells[1] = Spells{SpellName: SpellName, Quantity: Quantity, Damage: Damage}
 	}
 }
