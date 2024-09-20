@@ -13,7 +13,6 @@ import (
 
 func main() {
 	src.ClearScreen()
-	player.InitializeSpell()
 	var agentName string
 	var agentChoice string
 	fmt.Println('\n',

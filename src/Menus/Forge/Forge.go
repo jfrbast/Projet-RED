@@ -12,7 +12,7 @@ func VisitForge() {
 	p := player.GetPlayer()
 	src.ClearScreen()
 	color.Cyan("    _/_/_/_/                                      \n   _/        _/_/    _/  _/_/    _/_/_/    _/_/   \n  _/_/_/  _/    _/  _/_/      _/    _/  _/_/_/_/  \n _/      _/    _/  _/        _/    _/  _/         \n_/        _/_/    _/          _/_/_/    _/_/_/    \n                                 _/               \n                            _/_/                  ")
-	fmt.Println("Bienvenue à la Forge !")
+	fmt.Println("Bienvenue chez Cypher!")
 	fmt.Println("Que voulez-vous forger ?")
 	fmt.Println("1. Casque (100 crédits + 2 unités de radianite)")
 	fmt.Println("2. Plastron (200 crédits + 4 unités de radianite)")

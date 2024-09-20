@@ -113,7 +113,7 @@ func ItemToInventory(itemName string, quantity int) {
 	player.Inventory = append(player.Inventory, Item{Name: itemName, Quantity: quantity})
 }
 func (p *Player) CheckInventory() bool {
-	count := 1
+	count := 2
 	for _, items := range p.Inventory {
 		count = count + items.Quantity
 		if count >= p.InventoryMax {
@@ -150,13 +150,6 @@ func ToLower(s string) string {
 
 var spell Spells
 
-func InitializeSpell() {
-	Spell1 := Spells{"Pogo", 0, 20}
-	Spell2 := Spells{"Grenade", 0, 30}
-	fmt.Println(Spell1, Spell2)
-	ItemToInventory("Pogo", 0)
-	ItemToInventory("Grenade", 0)
-}
 func HasEnoughRadianite(required int) bool {
 	for _, item := range player.Inventory {
 		if item.Name == "Radianite" && item.Quantity >= required {
