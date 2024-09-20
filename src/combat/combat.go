@@ -110,6 +110,7 @@ func StartCombat() {
 						fmt.Printf("Vous brûlez %s pour %v dégâts .\n", enemy.Name, (spell.Damage))
 						enemy.Health -= (spell.Damage / 2)
 						time.Sleep(time.Second * 1)
+						p.Mana -= 25
 
 					}
 					break
@@ -129,6 +130,7 @@ func StartCombat() {
 						p.Spells[index].Quantity -= 1
 						fmt.Printf("Vous lancez une %s et infligez %d de dégats.\n", spell.SpellName, spell.Damage)
 						enemy.Health -= spell.Damage
+						p.Mana -= 30
 						break
 					}
 				}
