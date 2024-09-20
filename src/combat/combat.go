@@ -70,7 +70,7 @@ func StartCombat() {
 		time.Sleep(700 * time.Millisecond)
 		color.Blue("Choisissez une action :\n")
 		time.Sleep(500 * time.Millisecond)
-		fmt.Println("1. Attaque basique,classique")
+		fmt.Println("1. Attaque basique, coup de couteau")
 		time.Sleep(500 * time.Millisecond)
 		fmt.Println("2. Utiliser Pogo(25 mana)")
 		time.Sleep(500 * time.Millisecond)
@@ -216,6 +216,7 @@ func StartCombat() {
 				p.Level++
 				p.XP = 0
 				p.Xplvl += 7
+				color.Yellow("Vous passez au niveau supérieur! \n")
 			}
 			player.ItemToInventory("Radianite", 2)
 			break
