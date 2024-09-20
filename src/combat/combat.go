@@ -195,7 +195,7 @@ func StartCombat() {
 		} else if enemy.Health <= 0 {
 			color.Green("Vous avez vaincu le sous-fifre!\n")
 			time.Sleep(500 * time.Millisecond)
-			color.Yellow("vous avez gangné 300 crédits, 10 d'XP et 2radianite !")
+			color.Yellow("vous avez gangné 300 crédits, 10 d'XP et 2 de Radianite !")
 			time.Sleep(5 * time.Second)
 			p.Credits += 300
 			p.XP += 10
