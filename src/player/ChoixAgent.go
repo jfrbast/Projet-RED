@@ -175,3 +175,16 @@ func UseRadianite(amount int) {
 		}
 	}
 }
+func ItemToSpells(SpellName string, Quantity int, Damage int) {
+	for i, spells := range player.Spells {
+		if spells.SpellName == SpellName {
+			player.Spells[i].Quantity += Quantity
+			return
+		}
+	}
+	if SpellName == "Pogo" {
+		player.Spells[0] = Spells{SpellName: SpellName, Quantity: Quantity, Damage: Damage}
+	} else {
+		player.Spells[1] = Spells{SpellName: SpellName, Quantity: Quantity, Damage: Damage}
+	}
+}

@@ -104,6 +104,7 @@ func VisitShop() {
 				players.Credits -= 100
 				color.Green("Vous avez acheté votre Pogo !")
 				player.ItemToInventory("Pogo", 1)
+				player.ItemToSpells("Pogo", 1, 20)
 			} else {
 				fmt.Println("Vous n'avez pas assez de crédits.")
 			}
@@ -120,6 +121,7 @@ func VisitShop() {
 				players.Credits -= 300
 				color.Green("Vous avez acheté grenade !")
 				player.ItemToInventory("Grenade", 1)
+				player.ItemToSpells("Grenade", 1, 30)
 			} else {
 				fmt.Println("Vous n'avez pas assez de crédits.")
 			}
