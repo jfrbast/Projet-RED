@@ -13,7 +13,6 @@ func StartCombat() {
 	src.ClearScreen()
 	color.Cyan("     _/_/_/                            _/                    _/         _/  \n  _/          _/_/    _/_/_/  _/_/    _/_/_/      _/_/_/  _/_/_/_/     _/   \n _/        _/    _/  _/    _/    _/  _/    _/  _/    _/    _/         _/    \n_/        _/    _/  _/    _/    _/  _/    _/  _/    _/    _/                \n _/_/_/    _/_/    _/    _/    _/  _/_/_/      _/_/_/      _/_/     _/      ")
 	fmt.Println("Vous voulez vous battre, battez-vous !")
-	color.Red("//ATTENTION SI VOUS UTILISEZ UNE COMPETENCE QUE VOUS N'AVEZ PAS L'ENNEMI ATTAQUERA\\ \n")
 	time.Sleep(3 * time.Second)
 	p := player.GetPlayer()
 	var enemy player.Player
@@ -77,7 +76,7 @@ func StartCombat() {
 		time.Sleep(500 * time.Millisecond)
 		fmt.Println("3.Utiliser Grenade (30 mana)")
 		time.Sleep(500 * time.Millisecond)
-		fmt.Println("4. Utiliser une potion")
+		fmt.Println("4. Utiliser une potion de heal")
 		time.Sleep(500 * time.Millisecond)
 		color.Yellow("5.Appeler G-Rémy au combat !\n ")
 
@@ -117,9 +116,11 @@ func StartCombat() {
 				}
 				if !isFind {
 					color.Red("Vous ne possédez pas cette compétence!\n")
+					continue
 				}
 			} else {
 				fmt.Println("Pas assez de mana!")
+				continue
 			}
 		case 3:
 			if p.Mana >= 30 {
@@ -137,18 +138,20 @@ func StartCombat() {
 				if !isFind {
 					color.Red("Vous ne possédez pas cette compétence!")
 					time.Sleep(500 * time.Millisecond)
+					continue
 				}
 			} else {
 				color.Red("Pas assez de mana!")
 				time.Sleep(500 * time.Millisecond)
+				continue
 			}
 
 		case 4:
-
-			inventory.UseItemFromInventory("Potion de Soin")
-			time.Sleep(500 * time.Millisecond)
 			player.UseItem("Potion de Soin ")
 			time.Sleep(500 * time.Millisecond)
+			inventory.UseItemFromInventory("Potion de Soin")
+			time.Sleep(500 * time.Millisecond)
+
 		case 5:
 			if player.UseItem("Jérémie l'intrépide") {
 				time.Sleep(500 * time.Millisecond)
@@ -160,11 +163,15 @@ func StartCombat() {
 				time.Sleep(1500 * time.Millisecond)
 				color.Red("JérémY est parti tout comme vos 5000 crédits...\n")
 				time.Sleep(500 * time.Millisecond)
+			} else {
+				color.Red("Vous ne possedez pas cette compétence.\n")
+				continue
 			}
 
 		default:
 			fmt.Println("Action non reconnu, essaye encore.")
 			time.Sleep(500 * time.Millisecond)
+			continue
 		}
 
 		if enemy.Health > 0 {
