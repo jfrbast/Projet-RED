@@ -29,7 +29,7 @@ func StartCombat() {
 			Name:       "Antonain",
 			Health:     30,
 			Attack:     30,
-			Initiative: 13,
+			Initiative: 16,
 		}
 	}
 	if p.Level >= 6 && p.Level < 10 {
@@ -37,7 +37,7 @@ func StartCombat() {
 			Name:       "Phabieau",
 			Health:     70,
 			Attack:     13,
-			Initiative: 15,
+			Initiative: 20,
 		}
 	}
 	if p.Level >= 10 {
@@ -45,7 +45,7 @@ func StartCombat() {
 			Name:       "Lillhian",
 			Health:     100,
 			Attack:     19,
-			Initiative: 25,
+			Initiative: 30,
 		}
 	}
 	fmt.Printf("Votre Initiative: %d | Initiative de l'ennemi (%s): %d\n", p.Initiative, enemy.Name, enemy.Initiative)
@@ -99,7 +99,7 @@ func StartCombat() {
 					if spell.SpellName == "Pogo" && spell.Quantity > 0 {
 						isFind = true
 						p.Spells[index].Quantity -= 1
-
+						player.UseItem("Pogo")
 						fmt.Printf("Vous lancez %s et brûlez %s pour %v dégâts .\n", spell.SpellName, enemy.Name, (spell.Damage))
 						enemy.Health -= (spell.Damage / 2)
 						time.Sleep(time.Second * 1)
@@ -129,6 +129,7 @@ func StartCombat() {
 					if spell.SpellName == "Grenade" && spell.Quantity > 0 {
 						isFind = true
 						p.Spells[index].Quantity -= 1
+						player.UseItem("Grenade")
 						fmt.Printf("Vous lancez une %s et infligez %d de dégats.\n", spell.SpellName, spell.Damage)
 						enemy.Health -= spell.Damage
 						p.Mana -= 30
